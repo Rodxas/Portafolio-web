@@ -1,0 +1,22 @@
+# robots.txt para Portafolio de Rodney Polanco
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://rodneypolanco.github.io/Portafolio/sitemap.xml
+
+# Disallow secciones que no necesitan indexación
+Disallow: /documentos/
+Disallow: /css/
+Disallow: /js/
+Disallow: /lib/
+
+# Archivos sensibles
+Disallow: /Views/
+Disallow: /Domain/
+Disallow: /Application/
+Disallow: /Infrastructure/
+
+# Velocidad de crawl
+Crawl-delay: 1
