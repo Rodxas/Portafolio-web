@@ -1,5 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces;
 using Domain.Entities;
 using Portafolio.Models;

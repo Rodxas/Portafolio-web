@@ -21,6 +21,11 @@ builder.Services.Configure<PersonaSettings>(
     builder.Configuration.GetSection(PersonaSettings.SectionName));
 
 // ============================================
+// Memory Cache - Rendimiento
+// ============================================
+builder.Services.AddMemoryCache();
+
+// ============================================
 // Configuración de producción - Compression & Caching
 // ============================================
 if (!builder.Environment.IsDevelopment())
@@ -36,12 +41,13 @@ if (!builder.Environment.IsDevelopment())
 }
 
 // ============================================
-// Configuración de la base de datos
-// Usando InMemory Database para simplificar
-// (Se puede cambiar a MySQL/SQL Server)
+// Base de datos - SQLite (Producción)
 // ============================================
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? "Data Source=portafolio.db";
+
 builder.Services.AddDbContext<PortafolioDbContext>(options =>
-    options.UseInMemoryDatabase("PortafolioDB"));
+    options.UseSqlite(connectionString));
 
 // ============================================
 // Inyección de Dependencias - SOLID
@@ -55,6 +61,15 @@ builder.Services.AddScoped<IPersonaRepository, PersonaRepository>();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
 
 var app = builder.Build();
+
+// ============================================
+// Inicializar base de datos SQLite
+// ============================================
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<PortafolioDbContext>();
+    context.Database.EnsureCreated();
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

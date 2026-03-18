@@ -46,7 +46,8 @@
                     <img id="foto" 
                          src="~/imagenes/CV foto Rodney_Polanco.jpg" 
                          alt="Foto de Rodney Polanco" 
-                         class="img-fluid profile-image" />
+                         class="img-fluid profile-image"
+                         loading="lazy" />
                     <div class="image-decoration"></div>
                 </div>
             </div>
@@ -73,7 +74,8 @@
                         <div class="col-lg-4 text-center mb-4 mb-lg-0">
                             <img src="~/imagenes/CV foto Rodney_Polanco.jpg" 
                                  alt="Rodney Polanco" 
-                                 class="about-image img-fluid" />
+                                 class="about-image img-fluid"
+                                 loading="lazy" />
                         </div>
                         <div class="col-lg-8">
                             <h3 class="mb-3">Desarrollador Full Stack en formación</h3>
@@ -311,9 +313,17 @@
             <p class="section-subtitle">Trabajos y aplicaciones desarrolladas</p>
         </div>
         
+        <!-- Filter Buttons -->
+        <div class="filter-buttons mb-4">
+            <button class="btn btn-filter active" data-filter="all">Todos</button>
+            <button class="btn btn-filter" data-filter="escritorio">Escritorio</button>
+            <button class="btn btn-filter" data-filter="web">Web</button>
+            <button class="btn btn-filter" data-filter="gaming">Gaming</button>
+        </div>
+        
         <div class="row g-4 justify-content-center">
             <!-- Calculadora -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="escritorio">
                 <div class="project-card">
                     <div class="project-image project-calculator">
                         <i class="bi bi-calculator"></i>
@@ -338,7 +348,7 @@
             </div>
 
             <!-- TwilioC# -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="web">
                 <div class="project-card">
                     <div class="project-image project-twilio">
                         <i class="bi bi-chat-dots"></i>
@@ -363,7 +373,7 @@
             </div>
 
             <!-- CreacionDArchivos -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="escritorio">
                 <div class="project-card">
                     <div class="project-image project-files">
                         <i class="bi bi-file-earmark-plus"></i>
@@ -388,7 +398,7 @@
             </div>
 
             <!-- SistemaPOS -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="web">
                 <div class="project-card">
                     <div class="project-image project-pos">
                         <i class="bi bi-cart-check"></i>
@@ -413,7 +423,7 @@
             </div>
 
             <!-- Snake Game -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="gaming">
                 <div class="project-card">
                     <div class="project-image project-snake">
                         <i class="bi bi-controller"></i>
@@ -438,7 +448,7 @@
             </div>
 
             <!-- Portafolio -->
-            <div class="col-md-6 col-lg-4">
+            <div class="col-md-6 col-lg-4 project-item" data-category="web">
                 <div class="project-card">
                     <div class="project-image project-portfolio">
                         <i class="bi bi-person-badge"></i>
@@ -481,7 +491,8 @@
         <img id="imagen-dotnet" 
              src="~/imagenes/dotnet-imagen-2.png" 
              alt="Tecnologías .NET" 
-             class="img-fluid dotnet-image" />
+             class="img-fluid dotnet-image"
+             loading="lazy" />
     </div>
 </section>
 
@@ -496,6 +507,82 @@
             <a href="#contacto" class="btn btn-light btn-lg">
                 <i class="bi bi-envelope me-2"></i>Contáctame
             </a>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonios Section -->
+<section id="testimonios" class="section-testimonials">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Testimonios</span>
+            <h2 class="section-title">Lo que dicen mis clientes</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <i class="bi bi-quote quote-icon"></i>
+                        <p class="testimonial-text">"Excelente profesional en su área, excelente comunicación y organización, creó justo lo que quería, estoy summation satifecha"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <a href="https://www.instagram.com/_pixelessence_?igsh=dmlvN3Zyb3N3bGQ3" 
+                           target="_blank" rel="noopener noreferrer" class="author-link">
+                            <i class="bi bi-instagram"></i> @@PixelEsscence
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contacto Section -->
+<section id="contacto" class="section-contact">
+    <div class="container">
+        <div class="section-header text-center mb-5">
+            <span class="section-tag">Contacto</span>
+            <h2 class="section-title">¿Tienes un proyecto en mente?</h2>
+            <p class="section-subtitle">Escríbeme y hablemos sobre tu próxima idea</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Contact Form -->
+                <form id="contact-form" class="contact-form">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <span class="spinner-border spinner-border-sm d-none me-2" role="status"></span>
+                        <span class="btn-text">Enviar Mensaje</span>
+                    </button>
+                    <div class="alert alert-success mt-3 d-none" id="form-success"></div>
+                    <div class="alert alert-danger mt-3 d-none" id="form-error"></div>
+                </form>
+                
+                <!-- WhatsApp and Instagram Buttons -->
+                <div class="contact-buttons mt-4 text-center">
+                    <p class="mb-3">O contáctame directamente:</p>
+                    <a href="https://wa.me/18493566053?text=Hola%20Rodney,%20me%20interesan%20sus%20servicios%20de%20desarrollo" 
+                       class="btn btn-whatsapp me-2" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                    </a>
+                    <a href="https://www.instagram.com/rodney_reparaciones_ti?igsh=cHQxZ3Jxa2FxcDJ0" 
+                       class="btn btn-instagram" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-instagram me-2"></i>Instagram
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </section>

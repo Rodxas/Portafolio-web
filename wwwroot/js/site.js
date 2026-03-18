@@ -136,3 +136,201 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// ========================================
+// Mobile Navigation (Hamburger Menu)
+// ========================================
+function initMobileNav() {
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobilePanel = document.querySelector('.mobile-nav-panel');
+    const overlay = document.querySelector('.mobile-nav-overlay');
+    
+    if (!hamburger || !mobilePanel) return;
+    
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobilePanel.classList.contains('open');
+        const icon = hamburger.querySelector('i');
+        
+        if (isOpen) {
+            mobilePanel.classList.remove('open');
+            overlay.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            icon.classList.remove('bi-x');
+            icon.classList.add('bi-list');
+        } else {
+            mobilePanel.classList.add('open');
+            overlay.classList.add('open');
+            hamburger.setAttribute('aria-expanded', 'true');
+            icon.classList.remove('bi-list');
+            icon.classList.add('bi-x');
+        }
+    });
+    
+    // Close on overlay click
+    overlay.addEventListener('click', () => {
+        mobilePanel.classList.remove('open');
+        overlay.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        const icon = hamburger.querySelector('i');
+        icon.classList.remove('bi-x');
+        icon.classList.add('bi-list');
+    });
+    
+    // Close on nav link click
+    mobilePanel.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            mobilePanel.classList.remove('open');
+            overlay.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            const icon = hamburger.querySelector('i');
+            icon.classList.remove('bi-x');
+            icon.classList.add('bi-list');
+        });
+    });
+    
+    // Mobile theme toggle
+    const mobileThemeToggle = document.getElementById('theme-toggle-mobile');
+    const mobileThemeIcon = document.getElementById('theme-icon-mobile');
+    
+    if (mobileThemeToggle && mobileThemeIcon) {
+        mobileThemeToggle.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                mobileThemeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                mobileThemeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+            }
+            
+            localStorage.setItem('theme', newTheme);
+            
+            // Sync desktop toggle
+            const desktopThemeIcon = document.getElementById('theme-icon');
+            const desktopThemeToggle = document.getElementById('theme-toggle');
+            if (desktopThemeIcon) {
+                if (newTheme === 'dark') {
+                    desktopThemeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+                } else {
+                    desktopThemeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+                }
+            }
+        });
+        
+        // Sync initial state
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            mobileThemeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+        }
+    }
+}
+
+// Initialize mobile navigation
+document.addEventListener('DOMContentLoaded', function() {
+    initMobileNav();
+});
+
+// ========================================
+// Project Gallery Filtering
+// ========================================
+function initProjectFilter() {
+    const filterButtons = document.querySelectorAll('.btn-filter');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    if (filterButtons.length === 0 || projectItems.length === 0) return;
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const filter = button.getAttribute('data-filter');
+            
+            // Update active button
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Filter projects
+            projectItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                
+                if (filter === 'all' || category === filter) {
+                    item.classList.remove('hidden');
+                    item.style.opacity = '0';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                    }, 50);
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        });
+    });
+}
+
+// Initialize project filter
+document.addEventListener('DOMContentLoaded', function() {
+    initProjectFilter();
+});
+
+// ========================================
+// Contact Form with Formspree
+// ========================================
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const successAlert = document.getElementById('form-success');
+    const errorAlert = document.getElementById('form-error');
+    const spinner = submitBtn.querySelector('.spinner-border');
+    const btnText = submitBtn.querySelector('.btn-text');
+    
+    if (!form) return;
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        spinner.classList.remove('d-none');
+        btnText.textContent = 'Enviando...';
+        successAlert.classList.add('d-none');
+        errorAlert.classList.add('d-none');
+        
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            message: formData.get('message')
+        };
+        
+        try {
+            const response = await fetch('https://formspree.io/f/xlgpoyqz', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (response.ok) {
+                successAlert.textContent = '¡Mensaje enviado exitosamente! Te responderé pronto.';
+                successAlert.classList.remove('d-none');
+                form.reset();
+            } else {
+                throw new Error('Formspree error');
+            }
+        } catch (error) {
+            errorAlert.textContent = 'Error al enviar el mensaje. Por favor intenta de nuevo.';
+            errorAlert.classList.remove('d-none');
+        } finally {
+            submitBtn.disabled = false;
+            spinner.classList.add('d-none');
+            btnText.textContent = 'Enviar Mensaje';
+        }
+    });
+}
+
+// Initialize contact form
+document.addEventListener('DOMContentLoaded', function() {
+    initContactForm();
+});

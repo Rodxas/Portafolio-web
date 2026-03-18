@@ -1,8 +1,9 @@
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Domain.Entities;
 using Domain.Interfaces;
 using Application.Interfaces;
 using Application.Configuration;
-using Microsoft.Extensions.Options;
 
 namespace Application.Services;
 

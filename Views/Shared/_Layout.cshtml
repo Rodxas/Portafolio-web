@@ -65,9 +65,52 @@
             <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
                 <i class="bi bi-code-square me-2"></i>RP
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler hamburger-menu" type="button" aria-label="Toggle navigation" aria-expanded="false">
                 <i class="bi bi-list fs-4"></i>
             </button>
+            <div class="mobile-nav-panel">
+                <ul class="navbar-nav ms-auto me-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sobre-mi">Sobre Mí</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#habilidades">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#certificados">Certificados</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#proyectos">Proyectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.linkedin.com/in/rodney-alberto-polanco-vizcaino-397b5524a" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/Rodxas" target="_blank" rel="noopener noreferrer" title="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.instagram.com/rodney_reparaciones_ti?igsh=cHQxZ3Jxa2FxcDJ0" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="theme-toggle-mobile" class="btn btn-theme-toggle" type="button" aria-label="Cambiar modo">
+                            <i class="bi bi-moon-fill" id="theme-icon-mobile"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="mobile-nav-overlay"></div>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto me-4">
                     <li class="nav-item">
@@ -96,6 +139,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/Rodxas" target="_blank" rel="noopener noreferrer" title="GitHub">
                             <i class="bi bi-github"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://www.instagram.com/rodney_reparaciones_ti?igsh=cHQxZ3Jxa2FxcDJ0" target="_blank" rel="noopener noreferrer" title="Instagram">
+                            <i class="bi bi-instagram"></i>
                         </a>
                     </li>
                 </ul>
@@ -137,6 +185,9 @@
                         </a>
                         <a href="https://github.com/Rodxas" target="_blank" rel="noopener noreferrer" class="footer-link me-3" title="GitHub">
                             <i class="bi bi-github fs-5"></i>
+                        </a>
+                        <a href="https://www.instagram.com/rodney_reparaciones_ti?igsh=cHQxZ3Jxa2FxcDJ0" target="_blank" rel="noopener noreferrer" class="footer-link me-3" title="Instagram">
+                            <i class="bi bi-instagram fs-5"></i>
                         </a>
                         <a href="https://drive.google.com/file/d/1tIMWTFkQEEsI2H27gZRrxW8AcekMafXs/view?usp=drive_link" target="_blank" class="footer-link" title="Descargar CV">
                             <i class="bi bi-file-earmark-arrow-down fs-5"></i> CV
